@@ -8,6 +8,8 @@
 4. run `npm install`
 5. Go to https://gorest.co.in/consumer/login and generate a token
 6. put your token to a corresponding variable in **_helpers/data.js_**
+7. once you are done with your task, go back to https://github.com/miksiv/frisbyWorkshop
+8. open 'Pull requests' and create a new pull request from your fork
 
 ## Tasks:
 
