@@ -45,6 +45,40 @@ Using the users, posts, comments, todo URLs from the https://gorest.co.in/ creat
 
 ## Cheat sheet:
 
+### Joi Assertion Samples
+
+String - data type assertion
+`Joi.string()`
+
+Number - data type assertion
+`Joi.number().min(1).max(10)`
+
+Required - assert that this exact value should be present
+`Joi.string().required()`
+
+Valid - assert that this exact value is equal to a provided value
+`Joi.string().valid('a')`
+
+Any - non-data type assertion
+`Joi.any().allow('a')`
+
+Optional - assertion that this value can exist
+`Joi.string().optional()`
+
+Array - data type assertion, can be used to verify values too
+`Joi.array().items(Joi.string().valid('a', 'b'))`
+
+Regex - to check that string matches a particular regex
+`Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)`
+
+### Asserting response body
+
+Assert the element with index 0 in the response body: `.expect('jsonTypes', '0', {//some assertions})`
+
+Assert that there's at least one element in the response body to match the criteria: `.expect('jsonTypes', '?', {//some assertions})`
+
+Assert that all elements in the response body match the criteria: `.expect('jsonTypes', '*', {//some assertions})`
+
 ### REST API
 use https://gorest.co.in/rest-console for manual testing
 
@@ -55,26 +89,3 @@ https://www.npmjs.com/package/@faker-js/faker
 
 ### Frisby docs:
 https://docs.frisbyjs.com/introduction/readme
-
-### Joi Assertion Samples
-
-String
-`Joi.string()`
-
-Number
-`Joi.number().min(1).max(10)`
-
-Required
-`Joi.string().required()`
-
-Any
-`Joi.any().allow('a')`
-
-Optional
-`Joi.string().optional()`
-
-Array
-`Joi.array().items(Joi.string().valid('a', 'b'))`
-
-Regex
-`Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)`
