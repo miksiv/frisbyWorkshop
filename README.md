@@ -71,13 +71,23 @@ Array - data type assertion, can be used to verify values too
 Regex - to check that string matches a particular regex
 `Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)`
 
-### Asserting response body
+### Building a response assertion
+
+We can assert many parameters of the received response, like `url`, `status`, `statusText`, `headers` and, of course, `body`
+
+Each of those can be asserted using a syntax like `expect('parameter_name', 'expected_value'')`
+
+The body is represented by a json, so we can assert it by a construction like: `.expect('json', 'title', 'JSON Feed')`
+
+But! there's a more agile way to do so, the `jsonTypes` assertion method is similar to `json`, but it provides a way to check the data types of the values in the response body.
 
 Assert the element with index 0 in the response body: `.expect('jsonTypes', '0', {//some assertions})`
 
 Assert that there's at least one element in the response body to match the criteria: `.expect('jsonTypes', '?', {//some assertions})`
 
 Assert that all elements in the response body match the criteria: `.expect('jsonTypes', '*', {//some assertions})`
+
+Asserting an element inside the json object by its' path: ` .expect('jsonTypes', 'data.items.etc...', {//some assertions}`
 
 ### REST API
 use https://gorest.co.in/rest-console for manual testing
