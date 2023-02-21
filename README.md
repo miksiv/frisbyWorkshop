@@ -32,6 +32,7 @@ Use the _**__tests__/api/posts.spec.js**_ as a template, steps as following:
 **2. Optional: add fail tests**
 - A request with an incorrect request payload
 - Try accessing user that doesn't exist
+- Your ideas welcome!
 
 **3. Optional: Create a functional test**
 
