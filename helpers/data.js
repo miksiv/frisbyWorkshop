@@ -3,7 +3,7 @@ const frisby = require('frisby')
 
 class Data {
     //TODO: insert your token here
-    #token = 'to be filled'
+    #token = "03f04c383f8e19496eb33ab797c1c0ce4b5b64e1b1fe8d0132a591ed5a8e0c74"
 
     /**
      * a method to get your token
