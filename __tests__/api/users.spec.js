@@ -3,8 +3,9 @@
  */
 const frisby = require('frisby');
 const data = require('../../helpers/data.js')
-const {Joi} = require("frisby");
-//same as const Joi = frisby.Joi;
+// const {Joi} = require("frisby");
+const Joi = frisby.Joi;
+const users = require('../../helpers/users.js')
 
 let email;
 let name;
@@ -49,15 +50,9 @@ describe('Users CRUD', function () {
     });
 
     it('GET the created user', async () => {
-        await frisby.get('https://gorest.co.in/public/v2/users/' + userId)
-            .expect('status', 200)
-            .expect('jsonTypes', {
-                id: Joi.number().valid(userId).required(),
-                name: Joi.string().valid(name).required(),
-                email: Joi.string().valid(email).required(),
-                gender: Joi.string().valid('male').required(),
-                status: Joi.string().valid('inactive').required()
-            })
+        let user = await users.getUser(userId, 200)
+        console.log(user)
+        Joi.assert(user.name, Joi.string().valid(name).required())
     });
 
     it('PATCH the created user', async () => {

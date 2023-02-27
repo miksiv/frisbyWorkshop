@@ -1,5 +1,6 @@
 const {faker} = require('@faker-js/faker');
-const frisby = require('frisby')
+const frisby = require('frisby');
+global.URLS = require('../endpoints');
 
 class Data {
     //TODO: insert your token here

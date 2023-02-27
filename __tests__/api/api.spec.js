@@ -5,6 +5,7 @@
 const frisby = require('frisby')
 const data = require('../../helpers/data.js')
 const {Joi} = require("frisby");
+
 describe('Sample test', function () {
     let userId;
     beforeAll(async () => {
@@ -15,7 +16,7 @@ describe('Sample test', function () {
         console.log('after the test')
     })
     it('Get user collection', async () => {
-        await frisby.get(`https://gorest.co.in/public/v2/users/`)
+        await frisby.get(URLS.users.user)
             .expect('status', 200)
             .expect('jsonTypes', '0', {
                 id: Joi.number().required(),
@@ -23,13 +24,27 @@ describe('Sample test', function () {
                 gender: Joi.string().valid('male', 'female').required(),
                 status: Joi.string().valid('inactive', 'active').required()
             })
-            .then(res=>{
+            .then(res => {
                 userId = res.json[0].id
                 console.log('First user has an id of:', userId)
             })
+        .inspectRequest()
+        .inspectResponse()
+        .inspectJSON()
+        .inspectBody()
+    });
+
+    xit('should ', async () => {
+        setTimeout(r => {
+            return Promise.resolve()
+        }, 1000)
+        await frisby.post(`https://gorest.co.in/public/v2/users/${userId}/posts`, {
+            id: null,
+            user_id: null,
+            title: 'small test article',
+            body: 'actually a big test article'
+        })
             .inspectRequest()
-            .inspectResponse()
-            .inspectJSON()
-            .inspectBody()
+            .inspectRequestHeaders()
     });
 });
