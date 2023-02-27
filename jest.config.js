@@ -7,6 +7,8 @@ module.exports = {
 
     // globalSetup: './globalSetup.js',
     // globalTeardown: './globalTeardown.js',
+    runner: "groups",
+    testRunner: 'jest-circus/runner',
     "reporters": [
         "default",
         ["jest-html-reporter", {

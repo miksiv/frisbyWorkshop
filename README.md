@@ -18,7 +18,7 @@
 **1. Create a new spec to cover CRUD operations**
 
 URL: https://gorest.co.in/public/v2/users
-Use the _**__tests__/api/posts.spec.js**_ as a template, steps as following:
+Use the _**__tests__/api/users.spec.js**_ as a template, steps as following:
 - Authenticate
 - Read user collection, validate schema
 - Create a User
@@ -75,6 +75,12 @@ Array - data type assertion, can be used to verify values too
 
 Regex - to check that string matches a particular regex
 `Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)`
+
+Email - to check that this value is a string and matches the email pattern"
+`Joi.string().email().required()`
+
+Asserting that more than one value can be expected
+`Joi.string().valid('inactive', 'active').required()`
 
 ### Building a response assertion
 

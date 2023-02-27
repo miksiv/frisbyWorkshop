@@ -28,6 +28,7 @@
     "jest-html-reporter": "^3.7.0"
   },
   "dependencies": {
-    "@types/jest": "^29.4.0"
+    "@types/jest": "^29.4.0",
+    "jest-runner-groups": "^2.2.0"
   }
 }

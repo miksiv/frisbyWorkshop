@@ -1,5 +1,6 @@
 /**
  * @author
+ * @group users
  */
 const frisby = require('frisby')
 const data = require('../../helpers/data.js')
@@ -19,6 +20,8 @@ describe('Sample test', function () {
             .expect('jsonTypes', '0', {
                 id: Joi.number().required(),
                 name: Joi.string().required(),
+                gender: Joi.string().valid('male', 'female').required(),
+                status: Joi.string().valid('inactive', 'active').required()
             })
             .then(res=>{
                 userId = res.json[0].id
@@ -26,5 +29,7 @@ describe('Sample test', function () {
             })
             .inspectRequest()
             .inspectResponse()
+            .inspectJSON()
+            .inspectBody()
     });
 });
