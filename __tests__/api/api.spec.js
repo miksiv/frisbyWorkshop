@@ -5,11 +5,15 @@
 const frisby = require('frisby')
 const data = require('../../helpers/data.js')
 const {Joi} = require("frisby");
+const moment = require('moment')
 
+let dateInFuture;
 describe('Sample test', function () {
     let userId;
     beforeAll(async () => {
         console.log('before the test', data.genRandomNumber(10, 100))
+        dateInFuture = moment().add(7, 'days').format('YYYY-MM-DDTHH:mm:ss.SSSZ')
+        console.log(dateInFuture)
         data.authenticate(data.token)
     })
     afterAll(async () => {
@@ -28,23 +32,32 @@ describe('Sample test', function () {
                 userId = res.json[0].id
                 console.log('First user has an id of:', userId)
             })
-        .inspectRequest()
-        .inspectResponse()
-        .inspectJSON()
-        .inspectBody()
+            .inspectRequest()
+            .inspectResponse()
+            .inspectJSON()
+            .inspectBody()
     });
 
-    xit('should ', async () => {
-        setTimeout(r => {
-            return Promise.resolve()
-        }, 1000)
-        await frisby.post(`https://gorest.co.in/public/v2/users/${userId}/posts`, {
-            id: null,
-            user_id: null,
-            title: 'small test article',
-            body: 'actually a big test article'
+    it('should ', async () => {
+        /**
+         * {
+         * "id": 14473,
+         * "user_id": 672420,
+         * "title": "Est adipisci ubi dolor deleo suscipit crastinus aliquid crapula at.",
+         * "due_on": "2023-03-06T00:00:00.000+05:30",
+         * "status": "pending"
+         * }
+         */
+        await frisby.post(`${URLS.users.user}${userId}/todos`, {
+            body: {
+                id: null,
+                userId: null,
+                title: 'nice title',
+                due_on: dateInFuture,
+                status: 'pending'
+            }
         })
             .inspectRequest()
-            .inspectRequestHeaders()
+            .inspectResponse()
     });
 });

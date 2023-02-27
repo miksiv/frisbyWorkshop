@@ -5,6 +5,12 @@ const Joi = frisby.Joi
 class Users {
     user;
 
+    /**
+     * retrieves a user by id
+     * @param id {number} - the user id
+     * @param status {number} - expected response status
+     * @returns {Promise<*>}
+     */
     async getUser(id, status) {
         await frisby.get('https://gorest.co.in/public/v2/users/' + id)
             .expect('status', status)
