@@ -17,7 +17,7 @@ describe('Users CRUD', function () {
         name = data.genRandomNumber(100000, 999999) + 'Test User'
     });
 
-    it.only('READ users', async () => {
+    it('READ users', async () => {
         await frisby.get('https://gorest.co.in/public/v2/users')
             .expect('jsonTypes', '*', {
                 id: Joi.number().required(),
